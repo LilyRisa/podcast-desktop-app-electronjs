@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Podcast ♥ VanMin</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <link rel="stylesheet" type="text/css" href="./fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./materialize/css/materialize.min.css"/>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="./materialize/js/materialize.min.js"></script>
+    
+</head>
+<body style="border-radius: 5px">
+    <div id="head">
+        <div id="close"><i class="fas fa-times-circle"></i></div>
+        <div id="maximum"><i class="fas fa-expand-arrows-alt"></i></div>
+        <div id="mine"><i class="fas fa-window-minimize"></i></div>
+    </div>
+    <div id="app-cover">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+        <div id="bg-artwork"></div>
+        <div id="bg-layer"></div>
+        <div id="player">
+            <div id="player-track">
+                <div id="album-name"></div>
+                <div id="track-name"></div>
+                <div id="track-time">
+                    <div id="current-time"></div>
+                    <div id="track-length"></div>
+                </div>
+                <div id="s-area">
+                    <div id="ins-time"></div>
+                    <div id="s-hover"></div>
+                    <div id="seek-bar"></div>
+                </div>
+            </div>
+            <div id="player-content">
+                <div id="album-art">
+                    
+                    <!-- <div id="buffer-box">Buffering ...</div> -->
+                </div>
+                <div id="player-controls">
+                    <div class="control">
+                        <div class="button" id="play-previous">
+                            <i class="fas fa-backward"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="play-pause-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="play-next">
+                            <i class="fas fa-forward"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="active-list">
+                    <div class="switch">
+                        <label>
+                          <input type="checkbox">
+                          <span class="lever"></span>
+                          Display list track
+                        </label>
+                      </div>
+                </div>
+                <div id="auto-next">
+                    <div class="switch">
+                        <a class="btn tooltipped" data-position="bottom" data-tooltip="" style="opacity: 0%;margin-right: -24px;"></a>
+                        <label>
+                          <span id="togg" class="togg" data-id="1"><i class="fas fa-random"></i></span>
+                        </label>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="list-track" style="display: none;">
+        <div >
+            <label style="color: black; position: fixed; margin-top: -25px">Track list</label>
+        <ul class="collection z-depth-2" id="content-track">
+            
+          </ul>
+        </div>
+    </div>
+    <script>
+        const remote = require('electron').remote;
+        
+        $('#close').on('click', function(){
+            var window = remote.getCurrentWindow();
+            window.close();
+        });
+        $('#maximum').on('click', function(){
+            var window = remote.getCurrentWindow();
+            if (!window.isMaximized()) {
+                window.maximize();
+                $(this).html('<i class="fas fa-compress-arrows-alt"></i>');
+            }else{
+                window.unmaximize();
+                $(this).html('<i class="fas fa-expand-arrows-alt"></i>');
+            }
+        });
+        $('#mine').on('click', function(){
+            var window = remote.getCurrentWindow();
+            window.minimize(); 
+        });
+    </script>
+    <script src="renderer.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>
