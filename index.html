@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Podcast ♥ VanMin</title>
+    <title>Podcast ♥ Công Minh</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <link rel="stylesheet" type="text/css" href="./style.css"/>
     <link rel="stylesheet" type="text/css" href="./fontawesome/css/all.min.css"/>
@@ -26,7 +26,7 @@
         <div id="player">
             <div id="player-track">
                 <div id="album-name"></div>
-                <div id="track-name"></div>
+                <div id="track-name" style="overflow: scroll;height: 30px;"></div>
                 <div id="track-time">
                     <div id="current-time"></div>
                     <div id="track-length"></div>
@@ -89,7 +89,9 @@
         </div>
     </div>
     <script>
-        const remote = require('electron').remote;
+        const remote = require('@electron/remote');
+        // const { BrowserWindow } = require('@electron/remote');
+        // console.log(BrowserWindow.getFocusedWindow().maximize());
         
         $('#close').on('click', function(){
             var window = remote.getCurrentWindow();

@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const remoteMain = require('@electron/remote/main')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -6,6 +7,7 @@ function createWindow () {
     height: 700,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       enableRemoteModule: true,
       devTools: false
     },
@@ -16,6 +18,13 @@ function createWindow () {
 
   win.loadFile('index.html')
   win.setMenuBarVisibility(false)
+  // win.webContents.openDevTools();
+  remoteMain.initialize();
+  remoteMain.enable(win.webContents);
+}
+if (process.platform === 'win32')
+{
+  app.setAppUserModelId('App ♥️ Công Minh');
 }
 app.whenReady().then(createWindow)
 

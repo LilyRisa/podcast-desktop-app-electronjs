@@ -18,7 +18,9 @@ $(function() {
     });
 
     const myNotification = new Notification('Podcast', {
-        body: 'Chúc bạn nghe nhạc vui vẻ 😍'
+        title: 'App ♥️ Công Minh',
+        body: 'Chúc bạn nghe nhạc vui vẻ 😍',
+        icon: './sound-wave.ico',
       });
     var playerTrack = $("#player-track"),
         bgArtwork = $('#bg-artwork'),
@@ -69,7 +71,7 @@ $(function() {
         //   }
         // getdata();
         $.ajax({
-            url: 'http://127.0.0.1:3333/episodes_api',
+            url: 'https://podcast.congminh.name.vn/episodes_api',
             type: 'get'
         }).done((data) =>{
             //console.log(data);
@@ -97,7 +99,9 @@ $(function() {
             $('#player').show(300);
             $('.collection-item').on('click', function(){
                 new Notification($(this).children('.title').text(), {
-                    body: $(this).children('p').text()
+                    title: 'App ♥️ Công Minh',
+                    body: $(this).children('p').text(),
+                    icon: $(this).children('img').attr('src'),
                 });
                 let id = $(this).children('.select-track-audio').attr('data-id');
                 console.log(id);

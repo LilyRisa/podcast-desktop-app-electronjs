@@ -428,3 +428,11 @@ body
  .togg{
      color:#ee6e73;
  }
+
+ ::-webkit-scrollbar {
+    width: 2px;
+    height: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+}
